@@ -1,0 +1,368 @@
+body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  background: #f5f6fa;
+  font-family: Inter, Arial, sans-serif;
+  overflow-y: auto;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  /* Let content define height; allow page to scroll */
+}
+
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.top-left, .top-right {
+  display: flex;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+  flex: 1;
+}
+
+.card-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.4rem;
+  color: #333840;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.date-display, .count-display {
+  display: inline-flex;
+  align-items: center; /* center icon with number/date */
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-icon, .alert-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem; /* base size; override in contexts below */
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  line-height: 1;
+  color: #005CB8;
+}
+
+/* Make icons match the large number size next to them */
+.count-display .material-symbols-rounded,
+.date-display .material-symbols-rounded {
+  font-size: 2.7rem;
+  line-height: 1;
+}
+
+.date-text, .count-number {
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #005CB8;
+  line-height: 1;
+}
+
+/* fine-tune baseline alignment for numbers next to icons */
+.count-number, .date-text {
+  line-height: 1.05; /* slight increase to better center with icon */
+}
+
+.trend-delta {
+  margin-top: 0.25rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.trend-delta.delta-positive { color: #A81E1E; }
+.trend-delta.delta-negative { color: #58D052; }
+.trend-delta.delta-neutral { color: #5C636E; }
+
+.trend-caption {
+  margin-top: 0.05rem;
+  color: #5C636E;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-label {
+  color: #5C636E;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.detail-value {
+  color: #333840;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.trend-chart {
+  flex: 1;
+  min-height: 220px; /* reduce slightly to give bottom row more height */
+  margin: 0.25rem 0 1rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trend-chart .recharts-responsive-container {
+  flex: 1;
+  min-height: 220px;
+}
+
+.message-bubble {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 420px;
+  min-height: 56px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* Icon inside the message bubble */
+.message-symbol {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.message-bubble.red {
+  background: #ffeaea;
+  border-color: #e57373;
+}
+.message-bubble.yellow {
+  background: #fffbe6;
+  border-color: #ffb300;
+}
+.message-bubble.blue {
+  background: #eaf4ff;
+  border-color: #1976d2;
+}
+.message-bubble.green {
+  background: #eafbe6;
+  border-color: #60C14A;
+}
+.message-bubble.purple {
+  background: #f3eaff;
+  border-color: #8e24aa;
+}
+
+.message-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.ribbon-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+}
+
+.message-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+/* Design system tiers for days without reclamations */
+.message-bubble.tier-0 {
+  background: #FDECEF; /* soft red */
+  color: #A81E1E;
+}
+.message-bubble.tier-10 {
+  background: #EAF4FF; /* soft blue */
+  color: #1976D2;
+}
+.message-bubble.tier-20 {
+  background: #EAFBE6; /* soft green */
+  color: #28991B;
+}
+.message-bubble.tier-30 {
+  background: #FFF4E5; /* soft orange */
+  color: #C77800;
+}
+.message-bubble.tier-60 {
+  background: #E8F5E9; /* trophy green */
+  color: #2E7D32;
+}
+.message-bubble.tier-90 {
+  background: #E3F2FD; /* diamond blue */
+  color: #1565C0;
+}
+.message-bubble.tier-120 {
+  background: #D4C2FC; /* purple */
+  color: #5E35B1;
+}
+
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-label {
+  color: #5C636E;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.current-streak {
+  background: linear-gradient(90deg, #005CB8, #027AD1);
+}
+
+.progress-text {
+  color: #5C636E;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #333840;
+}
+
+.error {
+  color: #932617;
+}
+
+/* Responsive adjustments for TV display */
+@media (min-width: 1920px) {
+  .dashboard-grid {
+    max-width: 1600px;
+  }
+  
+  .card-title {
+    font-size: 1.6rem;
+  }
+  
+  .date-text, .count-number {
+    font-size: 3rem;
+  }
+  
+  .calendar-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 1366px) {
+  .dashboard-grid {
+    gap: 1.5rem;
+  }
+  
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .date-text, .count-number {
+    font-size: 2rem;
+  }
+  
+  .calendar-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
