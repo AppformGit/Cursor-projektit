@@ -195,7 +195,7 @@ body, #root {
   width: 28px;
   height: 28px;
   flex-shrink: 0;
-  color: #ffffff;
+  color: inherit; /* match parent text color */
 }
 
 .message-bubble.red {
@@ -238,32 +238,32 @@ body, #root {
 
 /* Design system tiers for days without reclamations */
 .message-bubble.tier-0 {
-  background: #FDECEF; /* soft red */
-  color: #A81E1E;
+  background: #FBDBDA; /* alert red */
+  color: #DC1C18;
 }
 .message-bubble.tier-10 {
-  background: #EAF4FF; /* soft blue */
-  color: #1976D2;
+  background: #E9EDF1; /* gray */
+  color: #5C636E;
 }
 .message-bubble.tier-20 {
-  background: #EAFBE6; /* soft green */
-  color: #28991B;
+  background: #FFF7CC; /* smile yellow */
+  color: #DB9E01;
 }
 .message-bubble.tier-30 {
-  background: #FFF4E5; /* soft orange */
-  color: #C77800;
+  background: #DFFBD2; /* star green */
+  color: #23B22A;
 }
 .message-bubble.tier-60 {
-  background: #E8F5E9; /* trophy green */
-  color: #2E7D32;
+  background: #C9ECFB; /* trophy blue */
+  color: #005CB8;
 }
 .message-bubble.tier-90 {
-  background: #E3F2FD; /* diamond blue */
-  color: #1565C0;
+  background: #FDD6C3; /* diamond orange */
+  color: #F95A10;
 }
 .message-bubble.tier-120 {
-  background: #D4C2FC; /* purple */
-  color: #5E35B1;
+  background: #E4D8FD; /* crown purple */
+  color: #520BEA;
 }
 
 .progress-section {
