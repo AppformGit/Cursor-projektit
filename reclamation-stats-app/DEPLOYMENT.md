@@ -22,7 +22,7 @@ pm2 --version
 
 ### **2. Clone Repository**
 ```bash
-cd /home/pi
+cd /home/vadelma
 git clone https://github.com/YOUR_USERNAME/reclamation-stats-app.git
 cd reclamation-stats-app
 ```
@@ -36,7 +36,7 @@ npm run build
 ### **4. Start with PM2**
 ```bash
 # Start the app
-pm2 start ecosystem.config.js
+pm2 start ecosystem.config.cjs
 
 # Save PM2 configuration
 pm2 save
@@ -61,14 +61,14 @@ git push origin main
 1. SSH into your Pi
 2. Run the update script:
 ```bash
-cd /home/pi/reclamation-stats-app
+cd /home/vadelma/reclamation-stats-app
 chmod +x deploy-pi.sh
 ./deploy-pi.sh
 ```
 
 ## **Alternative Manual Update:**
 ```bash
-cd /home/pi/reclamation-stats-app
+cd /home/vadelma/reclamation-stats-app
 git pull origin main
 npm install
 npm run build
@@ -120,7 +120,7 @@ reclamation-stats-app/
 ├── src/                    # Source code
 ├── dist/                   # Built files (production)
 ├── server.js               # Production server
-├── ecosystem.config.js     # PM2 configuration
+├── ecosystem.config.cjs     # PM2 configuration
 ├── deploy-pi.sh           # Update script for Pi
 ├── build-prod.sh          # Build script for development
 └── package.json           # Dependencies

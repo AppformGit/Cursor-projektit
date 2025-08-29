@@ -3,7 +3,7 @@
 echo "🔄 Updating reclamation-stats-app..."
 
 # Navigate to app directory
-cd /home/pi/reclamation-stats-app
+cd /home/vadelma/reclamation-stats-app/reclamation-stats-app
 
 # Pull latest changes
 echo "📥 Pulling latest changes from GitHub..."

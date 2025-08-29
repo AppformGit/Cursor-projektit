@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: 'reclamation-stats-app',
     script: 'server.js',
-    cwd: '/home/pi/reclamation-stats-app',
+    cwd: '/home/vadelma/reclamation-stats-app/reclamation-stats-app',
     instances: 1,
     autorestart: true,
     watch: false,
