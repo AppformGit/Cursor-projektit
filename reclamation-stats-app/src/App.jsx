@@ -418,118 +418,50 @@ function App() {
 
     <div className="dashboard-grid">
         <div className="top-row">
-          <div className="top-left">
-            {/* Top-Left Card: Newest reclamation */}
-            <div className="dashboard-card">
-              <h2 className="card-title">{translations.newestReclamation}</h2>
-              <div className="card-content">
-                <div className="date-display">
-                  <span className="material-symbols-rounded" aria-hidden>calendar_month</span>
-                  <span className="date-text">{stats.newestReclamation.date}</span>
-                </div>
-                <div className="details-list">
+          {/* Top-Left Card: Newest reclamation */}
+          <div className="dashboard-card">
+            <h2 className="card-title">{translations.newestReclamation}</h2>
+            <div className="card-content">
+              <div className="date-display">
+                <span className="material-symbols-rounded" aria-hidden>calendar_month</span>
+                <span className="date-text">{stats.newestReclamation.date}</span>
+              </div>
+                              <div className="details-list">
+                  <div className="detail-item customer-row">
+                    <span className="detail-label">{translations.customer}</span>
+                    <span className="customer-tag">{stats.newestReclamation.customer}</span>
+                  </div>
                   <div className="detail-item">
                     <span className="detail-label">{translations.product}</span>
                     <span className="detail-value">{stats.newestReclamation.product}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="detail-label">{translations.customer}</span>
-                    <span className="detail-value">{stats.newestReclamation.customer}</span>
                   </div>
                   <div className="detail-item">
                     <span className="detail-label">{translations.reason}</span>
                     <span className="detail-value">{shortReason}</span>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
-          <div className="top-right">
-            {/* Top-Right Card: Days since previous reclamation */}
-            <div className="dashboard-card">
-              <h2 className="card-title">{translations.daysSincePrevious}</h2>
-              <div className="card-content">
+
+          {/* Top-Middle Card: Days since previous reclamation with message bubble */}
+          <div className="dashboard-card">
+            <h2 className="card-title">{translations.daysSincePrevious}</h2>
+            <div className="card-content">
               <div className="count-display">
                 <span className="material-symbols-rounded" aria-hidden>calendar_month</span>
                 <span className="count-number">{stats.daysSincePrevious}</span>
               </div>
-                <div className="trend-chart">
-                  <ResponsiveContainer width="100%" height={230}>
-                    <AreaChart data={stats.trendData} margin={{ top: 10, right: 15, left: -10, bottom: 25 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#CBD4DD" strokeOpacity={0.3} />
-                      <XAxis dataKey="month" />
-                      <YAxis />
-                      <Tooltip />
-                      <Line 
-                        type="monotone" 
-                        dataKey="reclamations" 
-                        stroke="#005CB8" 
-                        strokeWidth={3}
-                        dot={{ fill: "#005CB8", strokeWidth: 2, r: 4 }}
-                      />
-                      <ReferenceLine 
-                        x="Aug" 
-                        stroke="#F95A10" 
-                        strokeWidth={2} 
-                        strokeDasharray="5 5"
-                        label={{ value: "Edellinen reklamaatio", position: 'insideTopLeft', fill: '#F95A10', fontSize: 11 }}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className={`message-bubble ${messageClass} no-border`}>
-                  <div className="bubble-icon">{messageIconSvg}</div>
-                  <div className="bubble-text">
-                    <div className="message-title">{messageTitle}</div>
-                    <div className="message-sub">{messageSub}</div>
-                  </div>
+              <div className={`message-bubble ${messageClass} no-border`}>
+                <div className="bubble-icon">{messageIconSvg}</div>
+                <div className="bubble-text">
+                  <div className="message-title">{messageTitle}</div>
+                  <div className="message-sub">{messageSub}</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom row: 3 equal cards */}
-<div className="bottom-row">
-
-{/* Bottom-Left Card: Reclamations this year */}
-<div className="dashboard-card">
-  <h2 className="card-title">{translations.reclamationsThisYear}</h2>
-  <div className="card-content">
-    <div className="count-display">
-      <span className="material-symbols-rounded" aria-hidden>warning</span>
-      <span className="count-number">{yearTotal}</span>
-    </div>
-
-    <div className="trend-block">
-      <span className={`trend-delta ${yearDeltaClass}`}>
-        {yearPercent > 0 ? `+${yearPercent}%` : `${yearPercent}%`}
-      </span>
-      <div className="trend-caption">{yearCaption}</div>
-    </div>
-  </div>
-</div>
-
-{/* Middle Bottom Card: Reclamations this month */}
-<div className="dashboard-card">
-  <h2 className="card-title">{translations.reclamationsThisMonth}</h2>
-  <div className="card-content">
-    <div className="count-display">
-      <span className="material-symbols-rounded" aria-hidden>warning</span>
-      <span className="count-number">{currVal}</span>
-    </div>
-
-    <div className="trend-block">
-      <span className={`trend-delta ${trendDeltaClass}`}>
-        {trendPercent > 0 ? `+${trendPercent}%` : `${trendPercent}%`}
-      </span>
-      <div className="trend-caption">{monthCaption}</div>
-    </div>
-  </div>
-</div>
-
-
-          {/* Bottom-Right Card: Longest streak without reclamations */}
+          {/* Top-Right Card: Longest streak without reclamations */}
           <div className="dashboard-card">
             <h2 className="card-title">{translations.longestStreak}</h2>
             <div className="card-content">
@@ -538,13 +470,13 @@ function App() {
                   <span className="material-symbols-rounded" aria-hidden>calendar_month</span>
                   <span className="count-number">{stats.longestStreak}</span>
                 </div>
-                <div className="streak-date-range">
-                  <span className="streak-date-text">{stats.longestStreakDateRange}</span>
-                </div>
+              </div>
+              <div className="streak-date-range">
+                <span className="streak-date-text">{stats.longestStreakDateRange}</span>
               </div>
               <div className="progress-section">
                 <div className="progress-item">
-                  <div className="progress-label">{translations.currentStreakVsRecord}</div>
+                  <div className="progress-label">Nykyinen jakso vs. Pisin jakso</div>
                   <div className="progress-bar">
                     <div 
                       className="progress-fill current-streak" 
@@ -552,6 +484,58 @@ function App() {
                     ></div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom row: 2 cards - left card and chart spanning 2 cards width */}
+        <div className="bottom-row">
+          {/* Bottom-Left Card: Reclamations this year */}
+          <div className="dashboard-card">
+            <h2 className="card-title">{translations.reclamationsThisYear}</h2>
+            <div className="card-content">
+              <div className="count-display reclamations-year">
+                <span className="material-symbols-rounded" aria-hidden>warning</span>
+                <span className="count-number">{yearTotal}</span>
+              </div>
+
+              <div className="trend-block">
+                <span className={`trend-delta ${yearDeltaClass}`}>
+                  {yearPercent > 0 ? `+${yearPercent}%` : `${yearPercent}%`}
+                </span>
+                <div className="trend-caption">{yearCaption}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom-Right Card: Reclamation chart spanning 2 cards width */}
+          <div className="dashboard-card chart-card">
+            <h2 className="card-title">Reklamaatiohistoria</h2>
+            <div className="card-content">
+              <div className="trend-chart">
+                <ResponsiveContainer width="100%" height={260}>
+                  <AreaChart data={stats.trendData} margin={{ top: 10, right: 15, left: -10, bottom: 25 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#CBD4DD" strokeOpacity={0.3} />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line 
+                      type="monotone" 
+                      dataKey="reclamations" 
+                      stroke="#005CB8" 
+                      strokeWidth={3}
+                      dot={{ fill: "#005CB8", strokeWidth: 2, r: 4 }}
+                    />
+                    <ReferenceLine 
+                      x="Aug" 
+                      stroke="#DC1C18" 
+                      strokeWidth={2} 
+                      strokeDasharray="5 5"
+                      label={{ value: "Edellinen reklamaatio", position: 'insideTopLeft', fill: '#DC1C18', fontSize: 11 }}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
             </div>
           </div>
